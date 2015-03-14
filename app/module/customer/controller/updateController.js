@@ -21,7 +21,7 @@
 				toastr.error(CONFIG.toasts.failedToSaveData);
 
 			}
-			customerService.update(Number($routeParams.id),vm.workingCopy).then(onSuccess, onFail);
+			customerService.update($routeParams.id,vm.workingCopy).then(onSuccess, onFail);
 		}
 		function cancel() {
 			$location.path('customers');
@@ -35,7 +35,7 @@
 			function onFail(response){
 				toastr.error(CONFIG.toasts.failedToRemoveData);
 			}
-			customerService.remove(Number($routeParams.id)).then(onSuccess, onFail);
+			customerService.remove($routeParams.id).then(onSuccess, onFail);
 		}
 		function loadData(){
 			function onSuccess(response){
@@ -46,7 +46,7 @@
 				toastr.error(CONFIG.toasts.failedToLoadData);
 
 			}
-			customerService.getById(Number($routeParams.id)).then(onSuccess, onFail);
+			customerService.getById($routeParams.id).then(onSuccess, onFail);
 		}
 		function initVm() {
 			vm.dirty = false;

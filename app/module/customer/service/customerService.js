@@ -17,7 +17,8 @@
 				zipCode: '',
 				number: '',
 				street: '',
-				city: ''
+				city: '',
+				customerId: null
 			};
 		}
 
@@ -54,8 +55,7 @@
 		function remove(id) {
 			return $http({
 				method: 'DELETE',
-				url: CONFIG.restUrl + 'customers/' + id,
-				data:model
+				url: CONFIG.restUrl + 'customers/' + id
 			});
 		}
 	}
