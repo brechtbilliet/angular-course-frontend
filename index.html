@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>CustomerApp</title>
-		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-		<link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.css"/>
-		<link rel="stylesheet" type="text/css" href="style/screen.css"/>
+		<!--uncache(rename:false)-->
+        <link href="screen.css" rel="stylesheet"/>
+        <!--enduncache-->
 	</head>
 	<body>
 		<div ng-controller="shellController as shell">
@@ -31,23 +31,8 @@
 			</nav>
 			<div class="container" ng-view></div>
 		</div>
-		<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<script type="text/javascript" src="bower_components/angular/angular.js"></script>
-		<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-		<script type="text/javascript" src="bower_components/lodash/lodash.js"></script>
-		<script type="text/javascript" src="bower_components/toastr/toastr.js"></script>
-		<script type="text/javascript" src="app/module/about/config.js"></script>
-		<script type="text/javascript" src="app/module/home/config.js"></script>
-		<script type="text/javascript" src="app/module/customer/config.js"></script>
-		<script type="text/javascript" src="app/module/project/config.js"></script>
-		<script type="text/javascript" src="app/module/login/config.js"></script>
-		<script type="text/javascript" src="app/app.js"></script>
-		<script type="text/javascript" src="app/controller/shellController.js"></script>
-		<script type="text/javascript" src="app/module/about/controller/indexController.js"></script>
-		<script type="text/javascript" src="app/module/home/controller/indexController.js"></script>
-		<script type="text/javascript" src="app/module/login/controller/indexController.js"></script>
-		<script type="text/javascript" src="app/module/customer/controller/indexController.js"></script>
-		<script type="text/javascript" src="app/module/project/controller/indexController.js"></script>
+		<!--uncache(rename:false)-->
+        <script src="app.js" type="text/javascript"></script>
+        <!--enduncache-->
 	</body>
 </html>
