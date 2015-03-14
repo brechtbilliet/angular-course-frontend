@@ -4,6 +4,11 @@
 		var vm = this;
 		vm.save = save;
 		vm.cancel = cancel;
+		vm.workingCopyChanged = workingCopyChanged;
+
+		function workingCopyChanged(){
+			vm.dirty = !angular.equals(vm.workingCopy, vm.originalCopy);
+		}
 
 		function save(){
 			$location.path('customers');
@@ -13,6 +18,9 @@
 		}
 	
 		function initVm(){
+			vm.dirty = false;
+			vm.workingCopy = customerService.createEmpty();
+			vm.originalCopy = angular.copy(vm.workingCopy);
 		}
 		initVm();
 	}

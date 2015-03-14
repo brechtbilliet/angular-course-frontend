@@ -5,6 +5,15 @@
 		var vm = this;
 		vm.save = save;
 		vm.cancel = cancel;
+		vm.workingCopyChanged = workingCopyChanged;
+
+		function addProject(){
+			$location.path('customers/projects/add')
+		}
+
+		function workingCopyChanged(){
+			vm.dirty = !angular.equals(vm.workingCopy, vm.originalCopy);
+		}
 
 		function save() {
 			$location.path('customers');
