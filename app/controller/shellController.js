@@ -1,29 +1,13 @@
 (function(){
 	'use strict';
-	function Constructor(){
+	function Constructor(menuService){
 		var vm = this;
 
 		function initVm(){
-			vm.menuItems = [
-				{
-					label: 'Home',
-					url: '/'
-				},
-				{
-					label: 'Customers',
-					url: '/customers'
-				},
-				{
-					label: 'Projects',
-					url: '/projects'
-				},
-				{
-					label: 'About',
-					url: '/about'
-				}
-			];
+			vm.menuItems = menuService.getMenuItems();
 		}
 		initVm();
 	}
+	Constructor.$inject =['menuService'];
 	angular.module('app').controller('shellController', Constructor);
 }());

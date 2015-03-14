@@ -25,7 +25,8 @@
 		],
 		cssDependencies = [
 			'bower_components/bootstrap/dist/css/bootstrap.css',
-			'bower_components/toastr/toastr.css'
+			'bower_components/toastr/toastr.css',
+			'bower_components/fontawesome/css/font-awesome.css'
 		];
 
 	gulp.task('html', function() {
