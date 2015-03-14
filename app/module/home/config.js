@@ -3,7 +3,11 @@
 	var module = angular.module('app.home', ['ngRoute']);
 
 	function config($routeProvider){
-
+		$routeProvider.when('/', {
+			controller: 'home_indexController',
+			templateUrl: 'app/module/home/view/index.html'
+		});
+	
 	}
 	config.$inject = ['$routeProvider'];
 	module.config(config);
