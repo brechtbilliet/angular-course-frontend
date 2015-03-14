@@ -20,32 +20,19 @@
 		}
 
 		function getAll() {
-			var returnVal = [{
-				id: 1,
-				name: 'dummy company 1',
-				projects: [],
-				city: 'Ghent',
-				zipCode: 9000,
-				street: 'fakestreet',
-				number: '4'
-			}, {
-				id: 2,
-				name: 'dummy company 2',
-				projects: [],
-				city: 'Ghent',
-				zipCode: 9000,
-				street: 'fakestreet',
-				number: '4'
+			var returnVal = [];
+			for (var i = 0; i < 100; i++) {
+				returnVal.push({
+					id: i,
+					name: 'dummy company 1' + i,
+					projects: [],
+					city: 'Ghent',
+					zipCode: 9000,
+					street: 'fakestreet',
+					number: '4'
+				});
+			}
 
-			}, {
-				id: 3,
-				name: 'dummy company 3',
-				projects: [],
-				city: 'Ghent',
-				zipCode: 9000,
-				street: 'fakestreet',
-				number: '4'
-			}];
 
 			// this is to mock an $http request
 			return returnFakeCall(returnVal);

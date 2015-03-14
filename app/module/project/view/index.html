@@ -15,7 +15,7 @@
 			<td colspan="4">Loading...</td>
 		</tr>
 		<tr ng-repeat="item in vm.gridData">
-			<td>{{item.name}}</td>
+			<td>{{::item.name}}</td>
 			<td><button class="btn btn-default" ng-click="vm.update(item)"><i class="fa fa-pencil"></i>&nbsp;Update</button></td>
 		</tr>
 	</tbody>
