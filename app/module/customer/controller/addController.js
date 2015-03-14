@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	function Constructor($location, customerService){
+	function Constructor($location, customerService, CONFIG, toastr){
 		var vm = this;
 		vm.save = save;
 		vm.cancel = cancel;
@@ -11,7 +11,15 @@
 		}
 
 		function save(){
-			$location.path('customers');
+			function onSuccess(response){
+				$location.path('customers');
+				toastr.success(CONFIG.toasts.successfullySavedData);
+			}
+			function onFail(response){
+				toastr.error(CONFIG.toasts.failedToSaveData);
+
+			}
+			customerService.add(vm.workingCopy).then(onSuccess, onFail);
 		}
 		function cancel(){
 			$location.path('customers');
@@ -24,6 +32,6 @@
 		}
 		initVm();
 	}
-	Constructor.$inject = ['$location', 'customerService'];
+	Constructor.$inject = ['$location', 'customerService', 'CONFIG', 'toastr'];
 	angular.module('app.customer').controller('customer_addController', Constructor);
 }());

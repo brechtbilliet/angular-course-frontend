@@ -3,7 +3,7 @@
 	<div ng-include="'app/module/customer/view/_detail.html'"></div>
 	
 	<div class="col-sm-8 col-sm-offset-4">
-		<button class="btn btn-warning"><i class="fa fa-trash"></i>&nbsp;Remove</button>
+		<button class="btn btn-warning" ng-click="vm.remove()"><i class="fa fa-trash"></i>&nbsp;Remove</button>
 		<button class="btn btn-primary" ng-click="vm.save()" ng-disabled="!vm.dirty"><i class="fa fa-save"></i>&nbsp;Save</button>
 		<button class="btn btn-default" ng-click="vm.cancel()"><i class="fa fa-undo"></i>&nbsp;Cancel</button>
 	</div>

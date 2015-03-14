@@ -10,67 +10,79 @@
 			remove: remove,
 			createEmpty: createEmpty
 		};
-		function createEmpty(){
-			return{
+
+		function createEmpty() {
+			return {
 				id: null,
 				name: '',
 				city: ''
 			};
 		}
-		function getAll() {
-			var returnVal = [
-				{
-					id: 1,
-					name: 'dummy company 1',
-					projects: [],
-					city: 'Ghent',
-					zipCode: 9000,
-					street: 'fakestreet',
-					number: '4'
-				},
-				{
-					id: 2,
-					name: 'dummy company 2',
-					projects: [],
-					city: 'Ghent',
-					zipCode: 9000,
-					street: 'fakestreet',
-					number: '4'
 
-				},
-				{
-					id: 3,
-					name: 'dummy company 3',
-					projects: [],
-					city: 'Ghent',
-					zipCode: 9000,
-					street: 'fakestreet',
-					number: '4'
-				}
-			];
+		function getAll() {
+			var returnVal = [{
+				id: 1,
+				name: 'dummy company 1',
+				projects: [],
+				city: 'Ghent',
+				zipCode: 9000,
+				street: 'fakestreet',
+				number: '4'
+			}, {
+				id: 2,
+				name: 'dummy company 2',
+				projects: [],
+				city: 'Ghent',
+				zipCode: 9000,
+				street: 'fakestreet',
+				number: '4'
+
+			}, {
+				id: 3,
+				name: 'dummy company 3',
+				projects: [],
+				city: 'Ghent',
+				zipCode: 9000,
+				street: 'fakestreet',
+				number: '4'
+			}];
 
 			// this is to mock an $http request
+			return returnFakeCall(returnVal);
+		}
+
+		function returnFakeCall(obj) {
 			var deferred = $q.defer();
 			$timeout(function() {
-				deferred.resolve({data: returnVal});
+				deferred.resolve({
+					data: obj
+				});
 			}, 1000);
 			return deferred.promise;
 		}
 
 		function getById() {
-			// not implemented yet
+			return returnFakeCall({
+				id: 2,
+				name: 'dummy company 2',
+				projects: [],
+				city: 'Ghent',
+				zipCode: 9000,
+				street: 'fakestreet',
+				number: '4'
+			});
 		}
 
-		function update() {
-			// not implemented yet
+		function update(id, model) {
+			return returnFakeCall();
 		}
 
-		function add() {
-			// not implemented yet
+		function add(model) {
+			return returnFakeCall();
 		}
 
-		function remove() {
-			// not implemented yet
+		function remove(id) {
+			return returnFakeCall();
 		}
 	}
 	service.$inject = ['$q', '$timeout'];

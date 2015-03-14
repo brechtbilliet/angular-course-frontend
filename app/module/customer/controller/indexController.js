@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	function Constructor($location, customerService){
+	function Constructor($location, customerService, toastr, CONFIG){
 		var vm = this;
 		vm.update = update;
 		vm.add = add;
@@ -18,6 +18,7 @@
 				vm.gridData = response.data;
 			}
 			function onFail(response){
+				toastr.error(CONFIG.toasts.failedToLoadData);
 			}
 			customerService.getAll().then(onSuccess, onFail);
 		}
@@ -27,6 +28,6 @@
 		initVm();
 		loadData();
 	}
-	Constructor.$inject = ['$location', 'customerService'];
+	Constructor.$inject = ['$location', 'customerService', 'toastr', 'CONFIG'];
 	angular.module('app.customer').controller('customer_indexController', Constructor);
 }());
