@@ -9,7 +9,7 @@
 	</head>
 	<body ng-cloak>
 		<div ng-controller="shellController as shell">
-			<nav class="navbar navbar-inverse navbar-fixed-top">
+			<nav class="navbar navbar-inverse navbar-fixed-top" ng-if="shell.authenticatedModel.authenticated">
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -24,6 +24,15 @@
 						<ul class="nav navbar-nav">
 							<li ng-repeat="menuItem in shell.menuItems">
 								<a href="#{{::menuItem.url}}" title="{{::menuItem.label}}">{{::menuItem.label}}</a>
+							</li>
+							
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="navbar-text">
+								Welkom {{shell.authenticatedModel.firstName}} {{shell.authenticatedModel.lastName}}
+							</li>
+							<li>
+								<button class="btn btn-warning navbar-btn" ng-click="shell.logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</button>
 							</li>
 						</ul>
 					</div>

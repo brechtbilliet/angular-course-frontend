@@ -6,6 +6,7 @@
 	app.constant('toastr', toastr);
 
 	app.constant('CONFIG', {
+		restUrl: 'http://nflow-angular-course.azurewebsites.net/',
 		toasts:{
 			successfullySavedData: 'Successfully saved data',
 			failedToSaveData: 'Failed to save data',
@@ -15,6 +16,15 @@
 		}
 	});
 
-	app.run(function(){
-	});
+	app.run(['$rootScope', 'authenticationService', '$location', function($rootScope, authenticationService, $location){
+		if(authenticationService.isAuthenticated() === true){
+			$location.path('/');
+		}
+		$rootScope.$on('$locationChangeStart', function(){
+			var currentPath = $location.path();
+			if(authenticationService.isAuthenticated() === false && currentPath !== '/register'){
+				$location.path('/login');
+			}
+		});
+	}]);
 }());

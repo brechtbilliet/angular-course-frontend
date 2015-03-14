@@ -3,27 +3,27 @@
 
 	function Constructor(authenticationService) {
 		var vm = this;
-		vm.login = login;
+		vm.register = register;
 
-		function login() {
+		function register() {
 			function onSuccess(response) {
-				
 			}
 
 			function onFail(response) {
 
 			}
-			authenticationService.authenticate(vm.workingCopy).then(onSuccess, onFail);
+			authenticationService.register(vm.workingCopy).then(onSuccess, onFail);
 		}
 
 		function initVm() {
 			vm.workingCopy = {
 				emailAddress: '',
-				password: ''
+				password: '',
+				confirmPassword: ''
 			};
 		}
 		initVm();
 	}
 	Constructor.$inject = ['authenticationService'];
-	angular.module('app.login').controller('login_indexController', Constructor);
+	angular.module('app.login').controller('login_registerController', Constructor);
 }());
