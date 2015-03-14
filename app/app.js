@@ -17,9 +17,6 @@
 	});
 
 	app.run(['$rootScope', 'authenticationService', '$location', function($rootScope, authenticationService, $location){
-		if(authenticationService.isAuthenticated() === true){
-			$location.path('/');
-		}
 		$rootScope.$on('$locationChangeStart', function(){
 			var currentPath = $location.path();
 			if(authenticationService.isAuthenticated() === false && currentPath !== '/register'){
