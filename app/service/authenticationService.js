@@ -2,10 +2,17 @@
 	'use strict';
 
 	function Service($http, $window, $location, CONFIG, $q) {
+		var authenticationObj = getAuthenticationObject();
+		if(!authenticationObj){
+			authenticationObj = {
+				firstName: null,
+				lastName: null
+			};
+		}
 		var authenticatedModel = {
 			authenticated: isAuthenticated(),
-			firstName: getAuthenticationObject().firstName || '',
-			lastName: getAuthenticationObject().lastName || ''
+			firstName: authenticationObj.firstName || '',
+			lastName: authenticationObj.lastName || ''
 		};
 		return {
 			authenticatedModel: authenticatedModel,

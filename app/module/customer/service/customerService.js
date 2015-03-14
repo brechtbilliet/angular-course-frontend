@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	function service($q, $timeout) {
+	function service($http, CONFIG) {
 		return {
 			getAll: getAll,
 			getById: getById,
@@ -13,65 +13,52 @@
 
 		function createEmpty() {
 			return {
-				id: null,
 				name: '',
+				zipCode: '',
+				number: '',
+				street: '',
 				city: ''
 			};
 		}
 
 		function getAll() {
-			var returnVal = [];
-			for (var i = 0; i < 100; i++) {
-				returnVal.push({
-					id: i,
-					name: 'dummy company 1' + i,
-					projects: [],
-					city: 'Ghent',
-					zipCode: 9000,
-					street: 'fakestreet',
-					number: '4'
-				});
-			}
-
-
-			// this is to mock an $http request
-			return returnFakeCall(returnVal);
+			return $http({
+				method: 'GET',
+				url: CONFIG.restUrl + 'customers'
+			});
 		}
 
-		function returnFakeCall(obj) {
-			var deferred = $q.defer();
-			$timeout(function() {
-				deferred.resolve({
-					data: obj
-				});
-			}, 1000);
-			return deferred.promise;
-		}
-
-		function getById() {
-			return returnFakeCall({
-				id: 2,
-				name: 'dummy company 2',
-				projects: [],
-				city: 'Ghent',
-				zipCode: 9000,
-				street: 'fakestreet',
-				number: '4'
+		function getById(id) {
+			return $http({
+				method: 'GET',
+				url: CONFIG.restUrl + 'customers/' + id
 			});
 		}
 
 		function update(id, model) {
-			return returnFakeCall();
+			return $http({
+				method: 'PUT',
+				url: CONFIG.restUrl + 'customers/' + id,
+				data: model
+			});
 		}
 
 		function add(model) {
-			return returnFakeCall();
+			return $http({
+				method: 'POST',
+				url: CONFIG.restUrl + 'customers/',
+				data:model
+			});
 		}
 
 		function remove(id) {
-			return returnFakeCall();
+			return $http({
+				method: 'DELETE',
+				url: CONFIG.restUrl + 'customers/' + id,
+				data:model
+			});
 		}
 	}
-	service.$inject = ['$q', '$timeout'];
+	service.$inject = ['$http', 'CONFIG'];
 	angular.module('app.customer').factory('customerService', service);
 }());
