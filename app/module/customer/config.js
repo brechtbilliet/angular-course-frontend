@@ -9,12 +9,12 @@
 			templateUrl: 'app/module/customer/view/index.html'
 		})
 		.when('/customers/add', {
-			controller: 'customer_addControler',
+			controller: 'customer_addController',
 			controllerAs: 'vm',
 			templateUrl: 'app/module/customer/view/add.html'
 		})
 		.when('/customers/:id', {
-			controller: 'customer_updateControler',
+			controller: 'customer_updateController',
 			controllerAs: 'vm',
 			templateUrl: 'app/module/customer/view/update.html'
 		});
