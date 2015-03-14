@@ -1,7 +1,17 @@
 (function(){
 	'use strict';
-	function Constructor(customerService){
+	function Constructor($location, customerService){
 		var vm = this;
+		vm.update = update;
+		vm.add = add;
+
+		function update(customer){
+			$location.path('customers/' + customer.id);
+		}
+
+		function add(){
+			$location.path('customers/add');
+		}
 
 		function loadData(){
 			function onSuccess(response){
@@ -12,11 +22,11 @@
 			customerService.getAll().then(onSuccess, onFail);
 		}
 		function initVm(){
-			vm.gridData = [];
+			vm.gridData = null;
 		}
 		initVm();
 		loadData();
 	}
-	Constructor.$inject = ['customerService'];
+	Constructor.$inject = ['$location', 'customerService'];
 	angular.module('app.customer').controller('customer_indexController', Constructor);
 }());

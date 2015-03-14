@@ -13,16 +13,19 @@
 		function getAll() {
 			var returnVal = [
 				{
+					id: 1,
 					name: 'dummy company 1',
 					projects: [],
 					city: 'Ghent'
 				},
 				{
+					id: 2,
 					name: 'dummy company 2',
 					projects: [],
 					city: 'Ghent'
 				},
 				{
+					id: 3,
 					name: 'dummy company 3',
 					projects: [],
 					city: 'Ghent'

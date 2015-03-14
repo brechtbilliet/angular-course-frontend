@@ -7,6 +7,16 @@
 			controller: 'customer_indexController',
 			controllerAs: 'vm',
 			templateUrl: 'app/module/customer/view/index.html'
+		})
+		.when('/customers/add', {
+			controller: 'customer_addControler',
+			controllerAs: 'vm',
+			templateUrl: 'app/module/customer/view/add.html'
+		})
+		.when('/customers/:id', {
+			controller: 'customer_updateControler',
+			controllerAs: 'vm',
+			templateUrl: 'app/module/customer/view/update.html'
 		});
 	
 	}
