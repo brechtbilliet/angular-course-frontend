@@ -1,1 +1,22 @@
 <h1><i class="fa fa-list"></i>&nbsp;Project</h1>
+<button class="btn btn-primary pull-right" ng-click="vm.add()"><i class="fa fa-plus-circle"></i>&nbsp;Add</button>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Project name</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-if="vm.gridData.length === 0">
+			<td colspan="4">No data</td>
+		</tr>
+		<tr ng-if="vm.gridData === null">
+			<td colspan="4">Loading...</td>
+		</tr>
+		<tr ng-repeat="item in vm.gridData">
+			<td>{{item.name}}</td>
+			<td><button class="btn btn-default" ng-click="vm.update(item)"><i class="fa fa-pencil"></i>&nbsp;Update</button></td>
+		</tr>
+	</tbody>
+</table>

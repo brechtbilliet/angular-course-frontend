@@ -7,6 +7,16 @@
 			controller: 'project_indexController',
 			controllerAs: 'vm',
 			templateUrl: 'app/module/project/view/index.html'
+		})
+		.when('/projects/add', {
+			controller: 'project_addController',
+			controllerAs: 'vm',
+			templateUrl: 'app/module/project/view/add.html'
+		})
+		.when('/projects/:id', {
+			controller: 'project_updateController',
+			controllerAs: 'vm',
+			templateUrl: 'app/module/project/view/update.html'
 		});
 	
 	}
