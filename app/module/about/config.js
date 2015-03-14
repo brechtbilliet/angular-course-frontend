@@ -5,6 +5,7 @@
 	function config($routeProvider){
 		$routeProvider.when('/about', {
 			controller: 'about_indexController',
+			controllerAs: 'vm',
 			templateUrl: 'app/module/about/view/index.html'
 		});
 	

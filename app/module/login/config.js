@@ -5,6 +5,7 @@
 	function config($routeProvider){
 		$routeProvider.when('/login', {
 			controller: 'login_indexController',
+			controllerAs: 'vm',
 			templateUrl: 'app/module/login/view/index.html'
 		});
 	

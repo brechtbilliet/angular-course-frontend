@@ -1,1 +1,22 @@
 <h1><i class="fa fa-user"></i>&nbsp;Customer</h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Customer name</th>
+			<th>Number of projects</th>
+			<th>City</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-if="vm.gridData.length === 0">
+			<td colspan="4">No data</td>
+		</tr>
+		<tr ng-repeat="item in vm.gridData">
+			<td>{{item.name}}</td>
+			<td>{{item.projects.length}}</td>
+			<td>{{item.city}}</td>
+			<td><button class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Update</button></td>
+		</tr>
+	</tbody>
+</table>

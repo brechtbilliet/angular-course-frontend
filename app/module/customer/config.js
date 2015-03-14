@@ -5,6 +5,7 @@
 	function config($routeProvider){
 		$routeProvider.when('/customers', {
 			controller: 'customer_indexController',
+			controllerAs: 'vm',
 			templateUrl: 'app/module/customer/view/index.html'
 		});
 	
