@@ -11,8 +11,7 @@
 			vm.dirty = !angular.equals(vm.workingCopy, vm.originalCopy);
 			if (vm.dirty) {
 				preventLeaveService.prevent(CONFIG.preventReasons.dirty);
-			}
-			else{
+			} else {
 				preventLeaveService.allow();
 			}
 		}
@@ -25,8 +24,12 @@
 			}
 
 			function onFail(response) {
-			preventLeaveService.allow();
-				toastr.error(CONFIG.toasts.failedToSaveData);
+				if(response.status === 400){
+					vm.validationErrors = response.data.modelState;
+				}
+				else{
+					toastr.error(CONFIG.toasts.failedToSaveData);
+				}
 
 			}
 			customerService.add(vm.workingCopy).then(onSuccess, onFail);
@@ -38,6 +41,7 @@
 		}
 
 		function initVm() {
+			vm.validationErrors = null;
 			vm.dirty = false;
 			vm.workingCopy = customerService.createEmpty();
 			vm.originalCopy = angular.copy(vm.workingCopy);

@@ -24,8 +24,12 @@
 			}
 
 			function onFail(response) {
-				toastr.error(CONFIG.toasts.failedToSaveData);
 
+				if (response.status === 400) {
+					vm.validationErrors = response.data.modelState;
+				} else {
+					toastr.error(CONFIG.toasts.failedToSaveData);
+				}
 			}
 			projectService.add(vm.workingCopy).then(onSuccess, onFail);
 		}
@@ -48,6 +52,7 @@
 		}
 
 		function initVm() {
+			vm.validationErrors = null;
 			vm.dirty = false;
 			vm.customers = [];
 			vm.workingCopy = projectService.createEmpty();

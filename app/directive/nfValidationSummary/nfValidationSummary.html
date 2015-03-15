@@ -1,0 +1,7 @@
+<div class="alert alert-danger" ng-if="validationErrors">
+	<ul>
+		<li ng-repeat="validationError in validationErrors track by $index">
+			{{validationError[0]}}
+		</li>
+	</ul>
+</div>

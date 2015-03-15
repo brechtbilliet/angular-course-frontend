@@ -1,19 +1,20 @@
+<nf-validation-summary validation-errors="vm.validationErrors"></nf-validation-summary>
 <div class="form-group">
 	<label  class="col-sm-4 control-label">Name</label>
 	<div class="col-sm-8">
-		<input type="text" class="form-control" ng-model="vm.workingCopy.name" ng-change="vm.workingCopyChanged()"/>
+		<input type="text" class="form-control" ng-model="vm.workingCopy.name" ng-change="vm.workingCopyChanged()" nf-validation-border="model.Name" validation-errors="vm.validationErrors"/>
 	</div>
 </div>
 <div class="form-group">
 	<label  class="col-sm-4 control-label">Description</label>
 	<div class="col-sm-8">
-		<textarea class="form-control" ng-model="vm.workingCopy.description" ng-change="vm.workingCopyChanged()"></textarea>
+		<textarea class="form-control" ng-model="vm.workingCopy.description" ng-change="vm.workingCopyChanged()" nf-validation-border="model.Description" validation-errors="vm.validationErrors"></textarea>
 	</div>
 </div>
 
 <div class="form-group">
 	<label  class="col-sm-4 control-label">Customer</label>
 	<div class="col-sm-8">
-		<select class="form-control" ng-model="vm.workingCopy.customerId" ng-change="vm.workingCopyChanged()" ng-options="item.id as item.name for item in vm.customers"></select>
+		<select class="form-control" ng-model="vm.workingCopy.customerId" ng-change="vm.workingCopyChanged()" ng-options="item.id as item.name for item in vm.customers" nf-validation-border="model.Customer" validation-errors="vm.validationErrors"></select>
 	</div>
 </div>
