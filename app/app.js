@@ -4,6 +4,7 @@
 	// register our dependencies
 	app.constant('_', _);
 	app.constant('toastr', toastr);
+	app.constant('$',$);
 
 	app.constant('CONFIG', {
 		restUrl: 'http://nflow-angular-course.azurewebsites.net/',
