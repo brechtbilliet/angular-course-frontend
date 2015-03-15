@@ -10,7 +10,7 @@
 		function workingCopyChanged() {
 			vm.dirty = !angular.equals(vm.workingCopy, vm.originalCopy);
 			if (vm.dirty) {
-				preventLeaveService.prevent();
+				preventLeaveService.prevent(CONFIG.preventReasons.dirty);
 			}
 			else{
 				preventLeaveService.allow();

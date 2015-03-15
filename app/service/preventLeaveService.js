@@ -11,9 +11,8 @@
 			canLeave: canLeave
 		};
 		function init(){
-				debugger;
 			function onLocationChangeStart(e){
-				if(prevent){
+				if(preventLeave){
 					e.preventDefault();
 					toastr.warning(reason);
 				}

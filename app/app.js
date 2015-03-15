@@ -13,6 +13,9 @@
 			successfullyRemovedData: 'Successfully removed data',
 			failedToRemoveData: 'Faeild to remove data',
 			failedToLoadData: 'Failed to load data'
+		},
+		preventReasons:{
+			dirty: 'The form you have filled in is dirty, Cancel or save your changes'
 		}
 	});
 	app.config(['$httpProvider',
@@ -40,7 +43,8 @@
 			$httpProvider.interceptors.push(requestInterceptor);
 		}
 	]);
-	app.run(['$rootScope', 'authenticationService', '$location', function($rootScope, authenticationService, $location) {
+	app.run(['$rootScope', 'authenticationService', '$location', 'preventLeaveService', function($rootScope, authenticationService, $location, preventLeaveService) {
+		preventLeaveService.init();
 		$rootScope.$on('$locationChangeStart', function() {
 			var currentPath = $location.path();
 			if (authenticationService.isAuthenticated() === false && currentPath !== '/register') {
