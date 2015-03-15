@@ -21,7 +21,9 @@
 			'bower_components/bootstrap/dist/js/bootstrap.js',
 			'bower_components/lodash/lodash.js',
 			'bower_components/angular-spinner/angular-spinner.js',
-			'bower_components/toastr/toastr.js'
+			'bower_components/toastr/toastr.js',
+			'bower_components/spin.js/spin.js',
+			'bower_components/angular-spinner/angular-spinner.js'
 		],
 		cssDependencies = [
 			'bower_components/bootstrap/dist/css/bootstrap.css',
