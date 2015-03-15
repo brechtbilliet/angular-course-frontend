@@ -35,14 +35,14 @@
 				module: 'app',
 				root: 'app/'
 			}))
-			.pipe(concat('app.js'))
+			.pipe(concat('scripts.js'))
 			.pipe(gulp.dest('dev'));
 	});
 
 	gulp.task('compile-javascript', ['html'], function() {
-		return gulp.src(jsDependencies.concat(['app/**/*.js', 'dev/app.js']))
+		return gulp.src(jsDependencies.concat(['app/**/*.js', 'dev/scripts.js']))
 			.pipe(sourcemaps.init())
-			.pipe(concat('app.js'))
+			.pipe(concat('scripts.js'))
 			.pipe(sourcemaps.write())
 			.pipe(gulp.dest('dev'))
 			.pipe(connect.reload());
