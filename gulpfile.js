@@ -33,7 +33,7 @@
 			'bower_components/fontawesome/css/font-awesome.css',
 			'bower_components/angular-snap/angular-snap.css'
 		];
-
+/* development */
 	gulp.task('html', function() {
 		return gulp.src('app/**/*.html')
 			.pipe(templateCache({
@@ -86,9 +86,57 @@
 		});
 		return deferred.promise;
 	});
+/* mobile*/
+	gulp.task('html-mobile', function() {
+		return gulp.src('app/**/*.html')
+			.pipe(templateCache({
+				module: 'app',
+				root: 'app/'
+			}))
+			.pipe(concat('scripts.js'))
+			.pipe(gulp.dest('CustomerApp/www'));
+	});
 
-	
-	/* interaction */
+	gulp.task('compile-javascript-mobile', ['html-mobile'], function() {
+		return gulp.src(jsDependencies.concat(['app/**/*.js', 'CustomerApp/www/scripts.js']))
+			.pipe(sourcemaps.init())
+			.pipe(concat('scripts.js'))
+			.pipe(sourcemaps.write())
+			.pipe(gulp.dest('CustomerApp/www'))
+			.pipe(connect.reload());
+	});
+
+	gulp.task('compile-css-mobile', function() {
+		return gulp.src(cssDependencies.concat(['style/screen.css']))
+			.pipe(sourcemaps.init())
+			.pipe(concat('screen.css'))
+			.pipe(sourcemaps.write())
+			.pipe(gulp.dest('CustomerApp/www'))
+			.pipe(connect.reload());
+	});
+	gulp.task('uncache-index-mobile', function() {
+		return gulp.src(['index.html', 'config.json'])
+			.pipe(uncache({
+				append: 'time'
+			}))
+			.pipe(gulp.dest('CustomerApp/www'))
+			.pipe(connect.reload());
+	});
+
+	gulp.task('copy-fonts-mobile', function() {
+		return gulp.src('bower_components/fontawesome/fonts/*.*')
+			.pipe(gulp.dest('CustomerApp/www/fonts'));
+	});
+
+	gulp.task('clear-mobile', function() {
+		var deferred = Q.defer();
+		del(['CustomerApp/www/**/*.*', 'CustomerApp/www/*'], function() {
+			deferred.resolve();
+		});
+		return deferred.promise;
+	});
+
+/* interaction */
 	gulp.task('start-server', function() {
 		connect.server({
 			livereload: true,
@@ -118,5 +166,11 @@
 				gulp.run('watch-changes');
 				gulp.run('open-browser');
 			});
+	});
+
+	gulp.task('publish-mobile', function() {
+		runSequence('clear-mobile', 'compile-javascript-mobile',
+			'compile-css-mobile', 'uncache-index-mobile', 'copy-fonts-mobile'
+		);
 	});
 }());

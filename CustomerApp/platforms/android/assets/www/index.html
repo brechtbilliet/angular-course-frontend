@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title>CustomerApp</title>
+		<link href="screen.css?1426580246" rel="stylesheet"/>
+	</head>
+	<body ng-cloak>
+		<div ng-controller="shellController as shell">
+			<snap-drawer>
+				<nav class="side-navigation">
+					<ul>
+						<li ng-repeat="menuItem in shell.menuItems">
+							<a href="#{{::menuItem.url}}" title="{{::menuItem.label}}">{{::menuItem.label}}</a>
+						</li>
+						
+					</ul>
+				</nav>
+			</snap-drawer>
+			<snap-content>
+			<div class="container-fluid">
+				<div class="pull-right">
+					Welkom {{shell.authenticatedModel.firstName}} {{shell.authenticatedModel.lastName}}
+					<button class="btn btn-warning navbar-btn" ng-click="shell.logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</button>
+				</div>
+			</div>
+			<div class="container-fluid" ng-view></div>
+			</snap-content>
+		</div>
+		<script src="scripts.js?1426580246" type="text/javascript"></script>
+	</body>
+</html>
