@@ -23,12 +23,15 @@
 			'bower_components/angular-spinner/angular-spinner.js',
 			'bower_components/toastr/toastr.js',
 			'bower_components/spin.js/spin.js',
-			'bower_components/angular-spinner/angular-spinner.js'
+			'bower_components/angular-spinner/angular-spinner.js',
+			'bower_components/snapjs/snap.js',
+			'bower_components/angular-snap/angular-snap.js'
 		],
 		cssDependencies = [
 			'bower_components/bootstrap/dist/css/bootstrap.css',
 			'bower_components/toastr/toastr.css',
-			'bower_components/fontawesome/css/font-awesome.css'
+			'bower_components/fontawesome/css/font-awesome.css',
+			'bower_components/angular-snap/angular-snap.css'
 		];
 
 	gulp.task('html', function() {
@@ -96,7 +99,7 @@
 	gulp.task('watch-changes', function() {
 		gulp.watch(['app/*.js', 'app/**/*.js'], ['compile-javascript', 'uncache-index']);
 		gulp.watch('app/**/*.html', ['compile-javascript', 'uncache-index']);
-		gulp.watch('style/screen.scss', ['compile-css']);
+		gulp.watch('style/screen.css', ['compile-css', 'uncache-index']);
 		gulp.watch('index.html', ['uncache-index']);
 	});
 	gulp.task('open-browser', function() {

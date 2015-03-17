@@ -6,7 +6,7 @@
 			<th>Customer name</th>
 			<th>Number of projects</th>
 			<th>City</th>
-			<th>Actions</th>
+			<th class="text-right">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,7 +20,7 @@
 			<td>{{::item.name}}</td>
 			<td>{{::item.projects.length}}</td>
 			<td>{{::item.city}}</td>
-			<td><button class="btn btn-default" ng-click="vm.update(item)"><i class="fa fa-pencil"></i>&nbsp;Update</button></td>
+			<td class="text-right"><button class="btn btn-default" ng-click="vm.update(item)"><i class="fa fa-pencil"></i>&nbsp;Update</button></td>
 		</tr>
 	</tbody>
 </table>

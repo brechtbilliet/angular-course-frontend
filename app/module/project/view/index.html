@@ -4,7 +4,7 @@
 	<thead>
 		<tr>
 			<th>Project name</th>
-			<th>Actions</th>
+			<th class="text-right">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,7 +16,7 @@
 		</tr>
 		<tr ng-repeat="item in vm.gridData">
 			<td>{{::item.name}}</td>
-			<td><button class="btn btn-default" ng-click="vm.update(item)"><i class="fa fa-pencil"></i>&nbsp;Update</button></td>
+			<td class="text-right"><button class="btn btn-default" ng-click="vm.update(item)"><i class="fa fa-pencil"></i>&nbsp;Update</button></td>
 		</tr>
 	</tbody>
 </table>

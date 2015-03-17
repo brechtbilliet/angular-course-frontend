@@ -4,45 +4,33 @@
 		<meta charset="UTF-8">
 		<title>CustomerApp</title>
 		<!--uncache(rename:false)-->
-        <link href="screen.css" rel="stylesheet"/>
-        <!--enduncache-->
+		<link href="screen.css" rel="stylesheet"/>
+		<!--enduncache-->
 	</head>
 	<body ng-cloak>
 		<div ng-controller="shellController as shell">
-			<nav class="navbar navbar-inverse navbar-fixed-top" ng-if="shell.authenticatedModel.authenticated">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#/">Customer app</a>
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-							<li ng-repeat="menuItem in shell.menuItems">
-								<a href="#{{::menuItem.url}}" title="{{::menuItem.label}}">{{::menuItem.label}}</a>
-							</li>
-							
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="navbar-text">
-								Welkom {{shell.authenticatedModel.firstName}} {{shell.authenticatedModel.lastName}}
-							</li>
-							<li>
-								<button class="btn btn-warning navbar-btn" ng-click="shell.logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</button>
-							</li>
-						</ul>
-					</div>
+			<snap-drawer>
+				<nav class="side-navigation">
+					<ul>
+						<li ng-repeat="menuItem in shell.menuItems">
+							<a href="#{{::menuItem.url}}" title="{{::menuItem.label}}">{{::menuItem.label}}</a>
+						</li>
+						
+					</ul>
+				</nav>
+			</snap-drawer>
+			<snap-content>
+			<div class="container-fluid">
+				<div class="pull-right">
+					Welkom {{shell.authenticatedModel.firstName}} {{shell.authenticatedModel.lastName}}
+					<button class="btn btn-warning navbar-btn" ng-click="shell.logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</button>
 				</div>
-			</nav>
-			<nf-spinner></nf-spinner>
-			<div class="container" ng-view></div>
+			</div>
+			<div class="container-fluid" ng-view></div>
+			</snap-content>
 		</div>
 		<!--uncache(rename:false)-->
-        <script src="scripts.js" type="text/javascript"></script>
-        <!--enduncache-->
+		<script src="scripts.js" type="text/javascript"></script>
+		<!--enduncache-->
 	</body>
 </html>

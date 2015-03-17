@@ -1,10 +1,10 @@
 (function() {
 	'use strict';
-	var app = angular.module('app', ['app.home', 'app.about', 'app.customer', 'app.login', 'app.project', 'ngRoute', 'angularSpinner']);
+	var app = angular.module('app', ['app.home', 'app.about', 'app.customer', 'app.login', 'app.project', 'ngRoute', 'angularSpinner', 'snap']);
 	// register our dependencies
 	app.constant('_', _);
 	app.constant('toastr', toastr);
-	app.constant('$',$);
+	app.constant('$', $);
 
 	app.constant('CONFIG', {
 		restUrl: 'http://nflow-angular-course.azurewebsites.net/',
@@ -67,6 +67,9 @@
 			top: '50%', // Top position relative to parent
 			left: '50%' // Left position relative to parent
 		});
+	}]);
+	app.config(['snapRemoteProvider', function(snapRemoteProvider) {
+		snapRemoteProvider.globalOptions.disable = 'right';
 	}]);
 	app.run(['$rootScope', 'authenticationService', '$location', 'preventLeaveService', function($rootScope, authenticationService, $location, preventLeaveService) {
 		preventLeaveService.init();

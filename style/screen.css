@@ -8,3 +8,31 @@ body{
 .nf-invalid{
 	border: 1px solid #ff0000;
 }
+
+snap-content{
+	background: #fff;
+}
+snap-drawer{
+	background: #222;
+}
+.side-navigation ul{
+	margin: 0px;
+	padding: 0px;
+}
+.side-navigation li{
+	list-style-type: none;
+}
+.side-navigation li a{
+	background: #111;
+	padding: 10px;
+	display:block;
+	margin-bottom: 1px;
+	color: #fff;
+}
+.side-navigation li a:hover, a:focus{
+	text-decoration: none;
+	background-color: #337ab7;
+}
+.table.table-striped tr td{
+	vertical-align: middle;
+}
