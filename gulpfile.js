@@ -96,7 +96,7 @@
 		gulp.watch('app/**/*.html', function() {
 			runSequence('compile-javascript', 'uncache-index');
 		});
-		gulp.watch('style/screen.scss', function() {
+		gulp.watch('style/screen.css', function() {
 			runSequence('compile-css', 'uncache-index');
 		});
 		gulp.watch('index.html', function() {
