@@ -25,7 +25,8 @@
 		],
 		cssDependencies = [
 			'bower_components/bootstrap/dist/css/bootstrap.css',
-			'bower_components/toastr/toastr.css'
+			'bower_components/toastr/toastr.css',
+			'bower_components/font-awesome/css/font-awesome.css'
 		];
 
 	gulp.task('html', function() {
@@ -63,7 +64,7 @@
 	});
 
 	gulp.task('copy-fonts', function() {
-		return gulp.src('bower_components/fontawesome/fonts/*.*')
+		return gulp.src('bower_components/font-awesome/fonts/*.*')
 			.pipe(gulp.dest('dev/fonts'));
 	});
 	gulp.task('copy-modernizr', function() {
