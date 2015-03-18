@@ -44,7 +44,6 @@
 			.pipe(concat('scripts.js'))
 			.pipe(sourcemaps.write())
 			.pipe(gulp.dest('dev'))
-			.pipe(connect.reload());
 	});
 
 	gulp.task('compile-css', function() {
@@ -53,7 +52,6 @@
 			.pipe(concat('screen.css'))
 			.pipe(sourcemaps.write())
 			.pipe(gulp.dest('dev'))
-			.pipe(connect.reload());
 	});
 	gulp.task('uncache-index', function() {
 		return gulp.src(['index.html', 'config.json'])
@@ -81,7 +79,7 @@
 		return deferred.promise;
 	});
 
-	
+
 	/* interaction */
 	gulp.task('start-server', function() {
 		connect.server({
@@ -91,26 +89,34 @@
 	});
 
 	gulp.task('watch-changes', function() {
-		gulp.watch(['app/*.js', 'app/**/*.js'], ['compile-javascript', 'uncache-index']);
-		gulp.watch('app/**/*.html', ['compile-javascript', 'uncache-index']);
-		gulp.watch('style/screen.scss', ['compile-css']);
-		gulp.watch('index.html', ['uncache-index']);
+		gulp.watch(['app/*.js', 'app/**/*.js'], function() {
+			runSequence('compile-javascript', 'uncache-index');
+		});
+		gulp.watch('app/**/*.html', function() {
+			runSequence('compile-javascript', 'uncache-index');
+		});
+		gulp.watch('style/screen.scss', function() {
+			runSequence('compile-css', 'uncache-index');
+		});
+		gulp.watch('index.html', function() {
+			runSequence('uncache-index');
+		});
 	});
-	gulp.task('open-browser', function() {
-		var options = {
-			url: 'http://localhost:8080'
-		};
-		return gulp.src('./index.html')
-			.pipe(gOpen('', options));
-	});
+gulp.task('open-browser', function() {
+	var options = {
+		url: 'http://localhost:8080'
+	};
+	return gulp.src('./index.html')
+		.pipe(gOpen('', options));
+});
 
-	gulp.task('default', function() {
-		runSequence('clear-dev', 'compile-javascript',
-			'compile-css', 'uncache-index', 'copy-fonts',
-			function() {
-				gulp.run('start-server');
-				gulp.run('watch-changes');
-				gulp.run('open-browser');
-			});
-	});
+gulp.task('default', function() {
+	runSequence('clear-dev', 'compile-javascript',
+		'compile-css', 'uncache-index', 'copy-fonts',
+		function() {
+			gulp.run('start-server');
+			gulp.run('watch-changes');
+			gulp.run('open-browser');
+		});
+});
 }());
