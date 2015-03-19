@@ -1,80 +1,43 @@
 (function() {
 	'use strict';
 
-	function Constructor($location, $routeParams, customerService, CONFIG, toastr, preventLeaveService) {
+	function Constructor($location, $routeParams, customerUpdateModel) {
 		var vm = this;
+
 		vm.save = save;
-		vm.cancel = cancel;
 		vm.workingCopyChanged = workingCopyChanged;
+		vm.cancel = cancel;
 		vm.remove = remove;
 
-		function workingCopyChanged() {
-			vm.dirty = !angular.equals(vm.workingCopy, vm.originalCopy);
-			if (vm.dirty) {
-				preventLeaveService.prevent(CONFIG.preventReasons.dirty);
-			} else {
-				preventLeaveService.allow();
+		function remove(){
+			function onSuccess(){
+				$location.path('customers');
 			}
+			customerUpdateModel.remove($routeParams.id).then(onSuccess);
 		}
 
-		function save() {
-			function onSuccess(response) {
-				preventLeaveService.allow();
+		function save(){
+			function onSuccess(){
 				$location.path('customers');
-				toastr.success(CONFIG.toasts.successfullySavedData);
 			}
+			customerUpdateModel.save().then(onSuccess);
+		}
 
-			function onFail(response) {
-				if(response.status === 400){
-					vm.validationErrors = response.data.modelState;
-				}
-				else{
-					toastr.error(CONFIG.toasts.failedToSaveData);
-				}
-			}
-			customerService.update($routeParams.id, vm.workingCopy).then(onSuccess, onFail);
+		function workingCopyChanged(){
+			customerUpdateModel.workingCopyChanged();
 		}
 
 		function cancel() {
-			preventLeaveService.allow();
+			customerUpdateModel.cancel();
 			$location.path('customers');
 		}
 
-		function remove() {
-			function onSuccess(response) {
-				toastr.success(CONFIG.toasts.successfullyRemovedData);
-				cancel();
-			}
-
-			function onFail(response) {
-				preventLeaveService.allow();
-				toastr.error(CONFIG.toasts.failedToRemoveData);
-			}
-			customerService.remove($routeParams.id).then(onSuccess, onFail);
-		}
-
-		function loadData() {
-			function onSuccess(response) {
-				vm.originalCopy = response.data;
-				vm.workingCopy = angular.copy(vm.originalCopy);
-			}
-
-			function onFail(response) {
-				toastr.error(CONFIG.toasts.failedToLoadData);
-
-			}
-			customerService.getById($routeParams.id).then(onSuccess, onFail);
-		}
-
 		function initVm() {
-			vm.validationErrors = null;
-			vm.dirty = false;
-			vm.workingCopy = customerService.createEmpty();
-			vm.originalCopy = angular.copy(vm.workingCopy);
+			vm.model = customerUpdateModel.model;
+			customerUpdateModel.loadData($routeParams.id);
 		}
 		initVm();
-		loadData();
 	}
-	Constructor.$inject = ['$location', '$routeParams', 'customerService', 'CONFIG', 'toastr', 'preventLeaveService'];
+	Constructor.$inject = ['$location', '$routeParams', 'customerUpdateModel'];
 	angular.module('app.customer').controller('customer_updateController', Constructor);
 }());
