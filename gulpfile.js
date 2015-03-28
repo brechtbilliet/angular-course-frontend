@@ -26,7 +26,8 @@
 			'bower_components/angular-spinner/angular-spinner.js',
 			'bower_components/snapjs/snap.js',
 			'bower_components/angular-snap/angular-snap.js',
-			'bower_components/angular-animate/angular-animate.js'
+			'bower_components/angular-animate/angular-animate.js',
+			'bower_components/fastclick/lib/fastclick.js'
 		],
 		cssDependencies = [
 			'bower_components/bootstrap/dist/css/bootstrap.css',
@@ -59,7 +60,7 @@
 			.pipe(sourcemaps.init())
 			.pipe(concat('screen.css'))
 			.pipe(sourcemaps.write())
-			.pipe(gulp.dest('dev'))
+			.pipe(gulp.dest('dev/style'))
 			.pipe(connect.reload());
 	});
 	gulp.task('uncache-index', function() {
@@ -112,7 +113,7 @@
 			.pipe(sourcemaps.init())
 			.pipe(concat('screen.css'))
 			.pipe(sourcemaps.write())
-			.pipe(gulp.dest('CustomerApp/www'))
+			.pipe(gulp.dest('CustomerApp/www/style'))
 			.pipe(connect.reload());
 	});
 	gulp.task('uncache-index-mobile', function() {

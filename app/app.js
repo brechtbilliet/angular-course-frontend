@@ -72,6 +72,7 @@
 		snapRemoteProvider.globalOptions.disable = 'right';
 	}]);
 	app.run(['$rootScope', 'authenticationService', '$location', 'preventLeaveService', function($rootScope, authenticationService, $location, preventLeaveService) {
+		FastClick.attach(document.body);
 		preventLeaveService.init();
 		$rootScope.$on('$locationChangeStart', function() {
 			var currentPath = $location.path();
