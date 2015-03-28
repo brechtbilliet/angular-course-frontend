@@ -13,7 +13,7 @@
 				<nav class="side-navigation">
 					<ul>
 						<li ng-repeat="menuItem in shell.menuItems">
-							<a href="#{{::menuItem.url}}" title="{{::menuItem.label}}">{{::menuItem.label}}</a>
+							<a href="#{{::menuItem.url}}" title="{{::menuItem.label}}" nf-active-menu-item>{{::menuItem.label}}</a>
 						</li>
 						
 					</ul>
@@ -21,6 +21,9 @@
 			</snap-drawer>
 			<snap-content>
 			<div class="container-fluid">
+				<div class="pull-left">
+					<button class="btn btn-default navbar-btn" snap-toggle="left"><i class="fa fa-list"></i></button>
+				</div>
 				<div class="pull-right">
 					Welkom {{shell.authenticatedModel.firstName}} {{shell.authenticatedModel.lastName}}
 					<button class="btn btn-warning navbar-btn" ng-click="shell.logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</button>
