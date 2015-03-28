@@ -25,7 +25,8 @@
 			'bower_components/spin.js/spin.js',
 			'bower_components/angular-spinner/angular-spinner.js',
 			'bower_components/snapjs/snap.js',
-			'bower_components/angular-snap/angular-snap.js'
+			'bower_components/angular-snap/angular-snap.js',
+			'bower_components/angular-animate/angular-animate.js'
 		],
 		cssDependencies = [
 			'bower_components/bootstrap/dist/css/bootstrap.css',

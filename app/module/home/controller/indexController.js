@@ -2,7 +2,6 @@
 	'use strict';
 	function Constructor(){
 		var vm = this;
-			throw Error("sdfsf");
 
 		function initVm(){
 		}
